@@ -11,14 +11,12 @@ This directory contains a Flask application running in a Podman container with p
 ### Using podman-compose (Recommended)
 
 ```bash
-cd deploy
 podman-compose up -d
 ```
 
 ### Using podman run directly
 
 ```bash
-cd deploy
 chmod +x run.sh
 ./run.sh
 ```
