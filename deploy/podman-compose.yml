@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  flask-app:
+    image: python:3.13-slim
+    container_name: flask-app
+    ports:
+      - "8080:5000"
+    volumes:
+      - ./deploy:/app:z
+      - ./sql:/app/sql:z
+    working_dir: /app
+    command: >
+      bash -c "pip install --no-cache-dir flask && python app.py"
+    restart: always
+    environment:
+      - FLASK_ENV=development
