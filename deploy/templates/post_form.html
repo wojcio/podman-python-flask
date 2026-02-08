@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if post %}Edit Post{% else %}Create New Post{% endif %} - Flask Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="color: #2c3e50; margin-bottom: 1.5rem;">
+            {% if post %}Edit Post{% else %}Create New Post{% endif %}
+        </h2>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" id="title" name="title" value="{{ post.title if post else '' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Content (HTML allowed)</label>
+                <textarea id="content" name="content" rows="15">{{ post.content if post else '' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="is_published" {% if post and post.is_published %}checked{% endif %}>
+                    Publish immediately
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">{% if post %}Update Post{% else %}Create Post{% endif %}</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

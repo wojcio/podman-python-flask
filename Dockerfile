@@ -5,8 +5,7 @@ WORKDIR /app
 # Install Flask
 RUN pip install --no-cache-dir flask
 
-COPY app.py .
-
+COPY deploy/ ./deploy/
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "deploy/app.py"]
